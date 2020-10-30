@@ -1,10 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 // import Navbar from "./components/Navbar";
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
 import { UserProvider } from "./providers/userProvider";
+import Routes from "./config/Routes";
 
 function App() {
   return (
@@ -12,14 +11,7 @@ function App() {
       <Router>
         {/* <Navbar /> */}
         <div className="App">
-          <Switch>
-            <Route exact path="/">
-              <Login />
-            </Route>
-            <Route path="/dashboard">
-              <Dashboard />
-            </Route>
-          </Switch>
+          <Routes />
         </div>
       </Router>
     </UserProvider>

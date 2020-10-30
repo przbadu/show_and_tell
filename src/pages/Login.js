@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { UserContext } from "../providers/userProvider";
 import { signInWithGoogle } from "../services/firebase";
 
@@ -22,6 +22,8 @@ export default function Login() {
         />
         <span> Continue with Google</span>
       </button>
+
+      <Link to="/dashboard">Dashboard</Link>
     </div>
   );
 }
