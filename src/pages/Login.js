@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { UserContext } from "../providers/userProvider";
 import { signInWithGoogle } from "../services/firebase";
+import googleLogo from "../assets/google-logo.png";
 
 export default function Login() {
   const user = useContext(UserContext);
@@ -14,16 +15,16 @@ export default function Login() {
   if (authenticated) return <Redirect to="/dashboard" />;
 
   return (
-    <div className="login-buttons">
-      <button className="login-provider-button" onClick={signInWithGoogle}>
+    <div className="login-page">
+      <button className="sign-in-with-google-button" onClick={signInWithGoogle}>
         <img
-          src="https://img.icons8.com/ios-filled/50/000000/google-logo.png"
+          src={googleLogo}
           alt="google icon"
+          width={32}
+          style={{ marginRight: 10 }}
         />
         <span> Continue with Google</span>
       </button>
-
-      <Link to="/dashboard">Dashboard</Link>
     </div>
   );
 }
