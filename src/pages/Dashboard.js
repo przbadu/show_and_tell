@@ -1,12 +1,16 @@
+import { Container } from "@material-ui/core";
 import React from "react";
 
 import Navbar from "../components/Navbar";
+import Presentations from "../components/Presentations";
 
 export default function Dashboard() {
   return (
     <>
       <Navbar />
-      <h1>Dashboard Page</h1>
+      <Container>
+        <Presentations />
+      </Container>
     </>
   );
 }

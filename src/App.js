@@ -8,9 +8,7 @@ function App() {
   return (
     <UserProvider>
       <Router>
-        <div className="App">
-          <Routes />
-        </div>
+        <Routes />
       </Router>
     </UserProvider>
   );
