@@ -13,16 +13,41 @@ code {
 }
 
 .login-page {
-  display: flex;
   height: 100vh;
-  background-color: #222;
+  /* background-color: #222; */
+  background: rgb(7, 246, 136);
+  background: linear-gradient(
+    173deg,
+    rgba(7, 246, 136, 1) 0%,
+    rgba(3, 38, 31, 1) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.login__heading {
+  padding: 20px;
+  font-weight: bolder;
+  color: white;
+}
+
+.login__hero {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  color: white;
+  margin-top: 100px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .sign-in-with-google-button {
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 200px;
+  height: 50px;
+  margin-top: 30px;
 }
