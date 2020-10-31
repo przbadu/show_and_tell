@@ -47,8 +47,6 @@ export default function Presentations({ presentations }) {
             <TableCell>Title</TableCell>
             <TableCell align="right">Link</TableCell>
             <TableCell align="right">Presenter</TableCell>
-            <TableCell align="right">Creator</TableCell>
-            <TableCell align="right">Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
