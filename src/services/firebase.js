@@ -23,7 +23,7 @@ export const db = firebase.firestore();
 
 // collections
 const usersCollection = db.collection("users");
-// const presentationsCollection = db.collection("presentations");
+const presentationsCollection = db.collection("presentations");
 
 // sign in with google
 export const signInWithGoogle = async () => {
@@ -73,10 +73,53 @@ export const createUser = async (user, additionalData = {}) => {
 export const getUser = async (uid) => {
   if (!uid) return null;
   try {
-    const userDocument = await db.doc(`users/${uid}`).get();
+    const userDocument = await usersCollection.doc(uid).get();
 
     return { uid, ...userDocument.data() };
   } catch (e) {
     console.log(e);
+  }
+};
+
+// generate uniq uid
+export const uid = () => new Date().getTime();
+
+/**
+ * presentations
+ */
+// create presentation
+export const createPresentation = async (presentation) => {
+  if (!presentation) return null;
+
+  try {
+    await presentationsCollection.doc(uid().toString()).set(presentation);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+// update presentation
+export const updatePresentation = async (uid, presentation) => {
+  if (!uid) return null;
+  if (!presentation) return null;
+
+  try {
+    return await presentationsCollection.doc(uid).set(presentation);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+// fetch all presentations
+// .forEach((doc) => {
+//   return { id: doc.id, ...doc.data() };
+// });
+
+export const fetchPresentations = async () => {
+  try {
+    const snapshot = await presentationsCollection.get();
+    return snapshot.docs;
+  } catch (error) {
+    console.log(error);
   }
 };

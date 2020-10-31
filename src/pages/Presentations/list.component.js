@@ -7,6 +7,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import PresentationRow from "./row.component";
+import EmptyRecordRow from "../../components/EmptyRecordRow";
 
 const useStyles = makeStyles({
   table: {
@@ -50,21 +52,13 @@ export default function Presentations({ presentations }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.title}>
-              <TableCell component="th" scope="row">
-                {row.title}
-              </TableCell>
-              <TableCell align="right">
-                <a href={row.link} target="_blank" rel="noreferrer">
-                  View Presentation
-                </a>
-              </TableCell>
-              <TableCell align="right">{row.presenter}</TableCell>
-              <TableCell align="right">{row.creator}</TableCell>
-              <TableCell align="right">{row.actions}</TableCell>
-            </TableRow>
-          ))}
+          {presentations.length ? (
+            presentations.map((row) => (
+              <PresentationRow key={row.id} presentation={row} />
+            ))
+          ) : (
+            <EmptyRecordRow />
+          )}
         </TableBody>
       </Table>
     </TableContainer>

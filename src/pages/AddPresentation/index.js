@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,8 +11,9 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Slide from "@material-ui/core/Slide";
 import { Card, CardContent } from "@material-ui/core";
+
 import AppInput from "../../components/form/AppInput";
-import { UserContext } from "../../providers/userProvider";
+import { createPresentation, currentUser } from "../../services/firebase";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -36,7 +37,6 @@ export default function AddPresentationPage() {
     title: "",
     link: "",
     presenter: "",
-    creator: "",
   });
 
   const handleClose = () => {
@@ -47,7 +47,13 @@ export default function AddPresentationPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSave = () => {};
+  const handleSave = async (e) => {
+    e.preventDefault();
+    const uid = (await currentUser()).uid;
+    const data = { ...form, creatorId: uid };
+    await createPresentation(data);
+    handleClose();
+  };
 
   return (
     <div>
