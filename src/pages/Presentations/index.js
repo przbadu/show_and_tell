@@ -4,8 +4,8 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Container, Fab, makeStyles } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
-import Navbar from "../components/Navbar";
-import Presentations from "../components/Presentations";
+import Navbar from "../../components/Navbar";
+import Presentations from "./list.component";
 
 const useStyles = makeStyles((theme) => ({
   fab: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+export default function PresentationPage() {
   const classes = useStyles();
   const history = useHistory();
 
