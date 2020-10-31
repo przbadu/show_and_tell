@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { UserContext } from "../providers/userProvider";
 import { signInWithGoogle } from "../services/firebase";
 import googleLogo from "../assets/google-logo.png";
@@ -12,7 +12,7 @@ export default function Login() {
     if (user) setAuthenticated(true);
   }, [user]);
 
-  if (authenticated) return <Redirect to="/dashboard" />;
+  if (authenticated) return <Redirect to="/" />;
 
   return (
     <div className="login-page">
