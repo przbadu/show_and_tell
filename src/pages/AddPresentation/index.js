@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Slide from "@material-ui/core/Slide";
-import { useHistory } from "react-router-dom";
 import { Card, CardContent } from "@material-ui/core";
 import AppInput from "../../components/form/AppInput";
+import { UserContext } from "../../providers/userProvider";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -28,9 +29,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function AddPresentationPage() {
+  // const user = useContext(UserContext);
   const classes = useStyles();
   const history = useHistory();
-  const [open, setOpen] = React.useState(true);
   const [form, setForm] = React.useState({
     title: "",
     link: "",
@@ -39,7 +40,6 @@ export default function AddPresentationPage() {
   });
 
   const handleClose = () => {
-    setOpen(false);
     history.push("/");
   };
 
@@ -53,7 +53,7 @@ export default function AddPresentationPage() {
     <div>
       <Dialog
         fullScreen
-        open={open}
+        open
         onClose={handleClose}
         TransitionComponent={Transition}
       >
@@ -90,6 +90,14 @@ export default function AddPresentationPage() {
                 title="Presentation hosted link (e.g: google slide link)"
                 name="link"
                 value={form.link}
+                onChange={handleChange}
+              />
+
+              {/* this should be dropdown or Fixed list of user to select from */}
+              <AppInput
+                title="Who did the presentation?"
+                name="presenter"
+                value={form.presenter}
                 onChange={handleChange}
               />
             </form>
