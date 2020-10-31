@@ -15,15 +15,15 @@ firebase.initializeApp({
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 });
 
-export const auth = firebase.auth();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
-export const signInWithGoogle = () => {
-  auth
-    .signInWithPopup(googleProvider)
-    .then((res) => {
-      console.log(res.user);
-    })
-    .catch((error) => {
-      console.log(error.message);
-    });
+export const auth = firebase.auth();
+
+// sign in with google
+export const signInWithGoogle = async () => {
+  return await auth.signInWithPopup(googleProvider);
+};
+
+// sign out user
+export const signOut = async () => {
+  return await auth.signOut();
 };

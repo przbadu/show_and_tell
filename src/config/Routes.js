@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import LoginPage from "../pages/LoginPage";
 import PresentationsPage from "../pages/Presentations";
-import AddPresentationPage from "../pages/AddPresentationPage";
+import AddPresentationPage from "../pages/AddPresentation";
 
 export default function Routes() {
   return (

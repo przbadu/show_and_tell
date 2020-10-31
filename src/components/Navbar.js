@@ -4,7 +4,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import { auth } from "../services/firebase";
+import { signOut } from "../services/firebase";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +22,7 @@ export default function ButtonAppBar() {
   const classes = useStyles();
 
   const logout = async () => {
-    await auth.signOut();
+    await signOut();
     window.location.reload();
   };
 

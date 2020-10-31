@@ -11,7 +11,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Slide from "@material-ui/core/Slide";
 import { useHistory } from "react-router-dom";
 import { Card, CardContent } from "@material-ui/core";
-import AppInput from "../components/form/AppInput";
+import AppInput from "../../components/form/AppInput";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -27,7 +27,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AddPresentation() {
+export default function AddPresentationPage() {
   const classes = useStyles();
   const history = useHistory();
   const [open, setOpen] = React.useState(true);
