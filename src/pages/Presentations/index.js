@@ -6,7 +6,10 @@ import { useHistory } from "react-router-dom";
 
 import Navbar from "../../components/Navbar";
 import Presentations from "./list.component";
-import { fetchPresentations } from "../../services/firebase";
+import {
+  fetchPresentations,
+  searchPresentations,
+} from "../../services/firebase";
 
 const useStyles = makeStyles((theme) => ({
   fab: {
@@ -17,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PresentationPage() {
+  const [keyword, setKeyword] = useState("");
   const classes = useStyles();
   const history = useHistory();
   const [loading, setLoading] = useState(false);
@@ -27,7 +31,8 @@ export default function PresentationPage() {
   const getPresentations = async () => {
     setLoading(true);
     try {
-      const response = await fetchPresentations();
+      const response = await fetchPresentations(keyword);
+
       let fbData = [];
       response.forEach((doc) => {
         const data = { id: doc.id, ...doc.data() };
@@ -40,9 +45,26 @@ export default function PresentationPage() {
     }
   };
 
+  const search = async () => {
+    setLoading(true);
+    try {
+      if (keyword.length !== 0) {
+        const response = await searchPresentations(keyword);
+        setPresentations(response);
+        setLoading(false);
+      }
+    } catch (e) {
+      setLoading(false);
+    }
+  };
+
   return (
     <h1>
-      <Navbar />
+      <Navbar
+        keyword={keyword}
+        onChange={(e) => setKeyword(e.target.value)}
+        handleSearch={search}
+      />
       <Container>
         <Presentations loading={loading} presentations={presentations} />
         <Fab
