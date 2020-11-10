@@ -52,7 +52,7 @@ export default function PresentationPage() {
         const response = await searchPresentations(keyword);
         setPresentations(response);
         setLoading(false);
-      }
+      } else getPresentations();
     } catch (e) {
       setLoading(false);
     }
