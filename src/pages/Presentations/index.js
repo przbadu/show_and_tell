@@ -44,11 +44,7 @@ export default function PresentationPage() {
     <h1>
       <Navbar />
       <Container>
-        {loading ? (
-          <h1>Loading...</h1>
-        ) : (
-          <Presentations presentations={presentations} />
-        )}
+        <Presentations loading={loading} presentations={presentations} />
         <Fab
           color="primary"
           aria-label="add"
