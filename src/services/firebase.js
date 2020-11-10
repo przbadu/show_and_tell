@@ -128,7 +128,7 @@ export const fetchPresentations = async () => {
 
 export const searchPresentations = async (keyword) => {
   try {
-    const query = `select * from presentations where title LIKE '${keyword}%'`;
+    const query = `select * from presentations where title LIKE '${keyword}%' OR presenter LIKE '${keyword}%'`;
     const documents = await fireSql.query(query);
     return documents;
   } catch (e) {
